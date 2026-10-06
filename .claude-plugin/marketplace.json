@@ -1,0 +1,17 @@
+{
+  "name": "yannickpschroeder",
+  "owner": {
+    "name": "Yannick Schröder",
+    "url": "https://github.com/yannickpschroeder"
+  },
+  "description": "Yannick Schröder's skills, as an installable Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "yannickschroeder-skills",
+      "source": "./",
+      "description": "Agent skills for unattended, verifiable engineering: red-green hardening loops and long autonomous runs.",
+      "category": "engineering",
+      "keywords": ["engineering", "testing", "hardening", "autonomous"]
+    }
+  ]
+}

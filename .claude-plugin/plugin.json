@@ -1,0 +1,22 @@
+{
+  "name": "yannickschroeder-skills",
+  "version": "0.1.0",
+  "description": "Yannick Schröder's agent skills for unattended, verifiable engineering: red-green hardening loops and long autonomous runs.",
+  "author": {
+    "name": "Yannick Schröder",
+    "url": "https://github.com/yannickpschroeder"
+  },
+  "repository": "https://github.com/yannickpschroeder/skills",
+  "license": "MIT",
+  "keywords": [
+    "engineering",
+    "skills",
+    "testing",
+    "hardening",
+    "autonomous"
+  ],
+  "skills": [
+    "./skills/engineering/harden",
+    "./skills/productivity/autonomous"
+  ]
+}
