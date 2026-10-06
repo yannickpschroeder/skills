@@ -61,12 +61,13 @@ on its own.
 
 ### `/setup-yannick-skills` — configure once, before you leave
 
-An unattended run can't ask you where to put a decision — so that's settled up front. The setup asks three
+An unattended run can't ask you where to put a decision — so that's settled up front. The setup asks four
 questions and writes the answers to an `## Agent skills` block in your `CLAUDE.md`/`AGENTS.md`:
 
 - **Scope** — this repo only, or all your projects (`~/.claude/CLAUDE.md`). Repo config overrides user config.
 - **Decision sink** — GitHub or GitLab issues labelled `needs-decision`, one markdown file per decision, or
   any other system you describe in a sentence (a ticket system, Linear, Jira, a skill or MCP tool you already use).
+- **Language** — which language decisions and reports are written in, independent of the skills' own language.
 - **Review** — a fresh reviewer subagent, a second model via its CLI, or both.
 
 `/autonomous` then files each decision the moment it parks it, picks up your answers at the start of the next

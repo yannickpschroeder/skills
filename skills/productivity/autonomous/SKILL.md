@@ -33,6 +33,8 @@ the entire absence. Questions, doubts and decisions go to the **parking lot** an
   convention (CLAUDE.md/memory), else `.autonomous/<start date of the run>/` in the repo root. Fixed once at the
   start and written as the first line of every progress update; after a compaction take it from there, never
   recompute it (a run past midnight would otherwise lose its plan).
+- **Language** — parking lot, decisions, progress log, report and final message are written in the language set
+  under Language in the `## Agent skills` block; otherwise in the language the user writes in.
 - **Guardrails** — everything the user has ever forbidden or reserved for themselves: CLAUDE.md, memory
   (feedback notes), project docs. They apply unchanged during the run; "autonomous" grants no extra authority.
 - **Progress log** — `<work folder>/report.md`, updated after EVERY block (status, numbers, commits, what comes

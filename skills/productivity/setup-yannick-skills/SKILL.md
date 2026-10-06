@@ -1,6 +1,6 @@
 ---
 name: setup-yannick-skills
-description: "Configure where the skills park decisions for the user (GitHub/GitLab issues, local markdown, or any ticket system) and how they get work independently reviewed — per repo or for all projects. Run once before the first /autonomous run."
+description: "Configure where the skills park decisions for the user (GitHub/GitLab issues, local markdown, or any ticket system), in which language, and how they get work independently reviewed — per repo or for all projects. Run once before the first /autonomous run."
 disable-model-invocation: true
 ---
 
@@ -10,6 +10,7 @@ Scaffold the configuration the skills read when the user is not around to ask:
 
 - **Decision sink**: where decisions that only the user can make are filed, so they outlive the session and the
   user can answer them on their own schedule
+- **Language**: which language decisions, parked questions and reports for the user are written in
 - **Review**: how work gets an independent review before it is committed, in place of the user looking over it
 
 `/autonomous` is the main consumer: it cannot ask mid-run where to put a decision, because the user is away —
@@ -32,7 +33,7 @@ Read whatever exists; don't assume:
 - Your available skills and MCP tools: is there one that already files tickets or decisions (a ticket-system
   skill, a Linear/Jira connector)? If so, it is a strong candidate for the decision sink.
 
-**Done when:** you can name the current state for scope, decision sink and review, including any prior config.
+**Done when:** you can name the current state for scope, decision sink, language and review, including any prior config.
 
 ### 2. Present findings and ask
 
@@ -71,7 +72,14 @@ now; an unattended run can't. Options:
   paragraph how to file a decision and how to see whether it was answered; record that as freeform prose in the
   same shape as the seeds (target / file / check for answers / link).
 
-**Section C: Review.**
+**Section C: Language.**
+
+> In which language should decisions, parked questions and reports for you be written?
+
+Recommend the language the user is writing in right now. Code, commit messages and file names are not
+affected — they follow the project's conventions.
+
+**Section D: Review.**
 
 > Explainer: `/autonomous` must get every block independently reviewed before committing, because nobody is
 > reading along. How should that review run?
@@ -84,7 +92,7 @@ now; an unattended run can't. Options:
 
 Seed: [review.md](./review.md).
 
-**Done when:** scope, decision sink and review each have an answer the user confirmed.
+**Done when:** scope, decision sink, language and review each have an answer the user confirmed.
 
 ### 3. Confirm and write
 
@@ -109,6 +117,10 @@ absolute path** of `~/.claude/skills-config` (user scope, e.g. `/home/alex/.clau
 ### Decision sink
 
 [one line: where decisions go]. See `<config dir>/decision-sink.md`.
+
+### Language
+
+Decisions, parked questions and reports for the user: [language].
 
 ### Review
 

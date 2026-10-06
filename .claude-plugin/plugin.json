@@ -1,6 +1,6 @@
 {
   "name": "yannickschroeder-skills",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Yannick Schröder's agent skills for unattended, verifiable engineering: red-green hardening loops and long autonomous runs.",
   "author": {
     "name": "Yannick Schröder",

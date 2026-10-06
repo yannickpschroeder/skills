@@ -12,8 +12,8 @@ Public collection of my agent skills, installable as a Claude Code plugin and vi
 ## Shared configuration
 
 `setup-yannick-skills` writes an `## Agent skills` block (repo `CLAUDE.md`/`AGENTS.md`, or `~/.claude/CLAUDE.md`)
-pointing to `decision-sink.md` and `review.md`. A skill that needs to park a decision or get a review reads
-that block instead of asking. Treat it as a soft dependency: the skill must still work without it (local
+pointing to `decision-sink.md` and `review.md`, plus the language for decisions and reports. A skill that needs
+to park a decision or get a review reads that block instead of asking. Treat it as a soft dependency: the skill must still work without it (local
 fallback) and mention the setup in its final message. A new kind of shared setting goes into the setup skill as
 a new section, not into a separate `<skill>-configure` skill.
 
