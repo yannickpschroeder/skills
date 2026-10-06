@@ -9,6 +9,14 @@ Public collection of my agent skills, installable as a Claude Code plugin and vi
 - `.claude-plugin/plugin.json` — lists every published skill under `skills`.
 - `.claude-plugin/marketplace.json` — makes the repo installable as a marketplace.
 
+## Shared configuration
+
+`setup-yannick-skills` writes an `## Agent skills` block (repo `CLAUDE.md`/`AGENTS.md`, or `~/.claude/CLAUDE.md`)
+pointing to `decision-sink.md` and `review.md`. A skill that needs to park a decision or get a review reads
+that block instead of asking. Treat it as a soft dependency: the skill must still work without it (local
+fallback) and mention the setup in its final message. A new kind of shared setting goes into the setup skill as
+a new section, not into a separate `<skill>-configure` skill.
+
 ## Adding a skill
 
 1. Create `skills/<category>/<name>/SKILL.md` with frontmatter: `name` (matches the folder), `description`

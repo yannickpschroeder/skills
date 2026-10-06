@@ -19,8 +19,20 @@ the entire absence. Questions, doubts and decisions go to the **parking lot** an
   3. No other block of the plan can run instead.
   If any of the three does not hold, it is NOT a blocker → park it and move on.
 - **Parking lot** — `<work folder>/open_questions.md`: per entry the question, context in plain language, the
-  chosen provisional assumption, and what depends on it. Real decisions also go into the project's decision
-  tracker if it has one (issue tracker, decision log — convention from CLAUDE.md/memory; never only in the chat).
+  options with a recommendation, the chosen provisional assumption, and what depends on it. Never only in the chat.
+- **Decision sink** — where real decisions are filed so the user can answer them outside the session (issues,
+  a ticket system, decision files). Configured in the `## Agent skills` block of the project's CLAUDE.md/AGENTS.md,
+  else of the user-level CLAUDE.md; the project block wins. Every parked entry that needs the user's decision is
+  filed there **when it is parked**, not at the end, with the link noted in the parking lot. Filing into the
+  configured sink is pre-authorized — it is not a guardrail crossing; anything the sink config doesn't cover
+  (another repo, another tracker) still is. No sink configured → the parking lot is the only place, and the
+  final message suggests running `/setup-yannick-skills`. Sink unreachable (auth, network, repo outside the
+  configured target) → never a blocker: keep the entry in the parking lot marked `not filed: <reason>`, retry at
+  wrap-up.
+- **Work folder** — where plan, parking lot and progress log live: the folder the user names, else the project's
+  convention (CLAUDE.md/memory), else `.autonomous/<start date of the run>/` in the repo root. Fixed once at the
+  start and written as the first line of every progress update; after a compaction take it from there, never
+  recompute it (a run past midnight would otherwise lose its plan).
 - **Guardrails** — everything the user has ever forbidden or reserved for themselves: CLAUDE.md, memory
   (feedback notes), project docs. They apply unchanged during the run; "autonomous" grants no extra authority.
 - **Progress log** — `<work folder>/report.md`, updated after EVERY block (status, numbers, commits, what comes
@@ -29,9 +41,10 @@ the entire absence. Questions, doubts and decisions go to the **parking lot** an
 
 ## 1. Situation and plan
 
-1. Determine the goal: the user's argument, otherwise the open items from plan documents, the decision tracker,
-   memory and the last report. Check the current state before planning (commits, code, test data) — plan nothing
-   that is already done.
+1. Determine the goal: the user's argument, otherwise the open items from plan documents, the decision sink,
+   memory and the last report. Check the decision sink for decisions answered since the last run — they unblock
+   parked work and overrule provisional assumptions. Check the current state before planning (commits, code, test
+   data) — plan nothing that is already done.
 2. Write a plan file (the harness's plan folder or `<work folder>/plan.md`), structured in **blocks**:
    - per block: goal, steps, **done criterion** (checkable: bench green, tests + mutation probes, commit,
      ledger line), estimated duration, dependencies;
@@ -53,8 +66,9 @@ For each block:
    edit nothing it reads.
 2. **Build to project standard:** tests red first, then green; mutation probes for every new condition; benches
    before/after; every change explained. Never change golden data or expectations to get green — red is a finding.
-3. **Review before committing:** an independent review (the form usual in the project, e.g. a second model or a
-   fresh reviewer subagent), work in the findings with a pinning test, cross-check. The review replaces the
+3. **Review before committing:** an independent review as configured under Review in the `## Agent skills`
+   block (otherwise a fresh reviewer subagent without the implementation's context), work in the findings with a
+   pinning test, cross-check. The review replaces the
    question to the user — it is MANDATORY, not optional, precisely because nobody is watching.
 4. **Finish:** commit following project convention (stage only your own files), measurement ledger, progress log.
 5. **Next:** next block. A block that hangs on a non-blocker is finished under a provisional assumption or set
@@ -70,7 +84,8 @@ true blocker — and the progress log says which for every block.
 
 1. Finish `report.md`: what ran (with commits and numbers), what stayed red, what is parked.
 2. Review the parking lot: every question in plain language with context and examples, no abbreviations;
-   decisions in the decision tracker.
+   every decision filed in the decision sink and linked — or, if filing still fails, listed in the final
+   message as `not filed` with the reason.
 3. Update memory (new state, decisions needed).
 4. Final message: status in a few sentences, commits, open decisions as direct links, the next sensible step.
 
